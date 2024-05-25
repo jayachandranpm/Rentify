@@ -1,0 +1,11 @@
+Flask
+Flask-Migrate
+Flask-SQLAlchemy
+SQLAlchemy
+Werkzeug
+mysql-connector-python
+jwt
+Flask-MySQL
+mysqlclient
+flask-bcrypt
+Flask-Mail
