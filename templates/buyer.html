@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rentify - Buyer Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Rentify</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1>Buyer Dashboard</h1>
+        <div id="rentalsList"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function fetchProperties(page = 1) {
+                $.get(`/properties?page=${page}`, function (data) {
+                    $('#rentalsList').empty();
+                    data.properties.forEach(property => {
+                        $('#rentalsList').append(`
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">${property.title}</h5>
+                                    <p class="card-text">${property.description}</p>
+                                    <p class="card-text">Price: ${property.price}</p>
+                                    <p class="card-text">Location: ${property.location}</p>
+                                    <p class="card-text">Bedrooms: ${property.bedrooms}</p>
+                                    <p class="card-text">Bathrooms: ${property.bathrooms}</p>
+                                    <p class="card-text">Seller Contact: ${property.seller_contact}</p>
+                                    <p class="card-text">Seller Email: ${property.Email}</p>
+                                    <button class="btn btn-success like-btn" data-id="${property.id}">Like</button>
+                                    <p class="card-text">Likes: ${property.likes}</p>
+                                    <button class="btn btn-info interested-btn" data-id="${property.id}">I'm Interested</button>
+                                </div>
+                            </div>
+                        `);
+                    });
+                    if (data.total_pages > 1) {
+                        let pagination = `<nav><ul class="pagination">`;
+                        for (let i = 1; i <= data.total_pages; i++) {
+                            pagination += `<li class="page-item ${i === data.current_page ? 'active' : ''}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+                        }
+                        pagination += `</ul></nav>`;
+                        $('#rentalsList').append(pagination);
+                    }
+                });
+            }
+
+            fetchProperties();
+
+            $(document).on('click', '.like-btn', function () {
+                const propertyId = $(this).data('id');
+                $.post(`/like_property/${propertyId}`, function (data) {
+                    alert(`Property liked! Total likes: ${data.likes}`);
+                });
+            });
+
+            $(document).on('click', '.interested-btn', function () {
+                const propertyId = $(this).data('id');
+                $.post(`/interested/${propertyId}`, function (data) {
+                    alert(data.message);
+                });
+            });
+
+            $(document).on('click', '.page-link', function (e) {
+                e.preventDefault();
+                const page = $(this).data('page');
+                fetchProperties(page);
+            });
+        });
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
