@@ -1,7 +1,4 @@
 # Rentify
-Your README looks good! I added a section about setting up the SMTP mail server using a Gmail address and app password. Here's the updated version:
-
-```markdown
 # Rentify Web App
 
 This is a web application called Rentify, built with Flask for managing properties.
@@ -96,10 +93,6 @@ This is a web application called Rentify, built with Flask for managing properti
 This project was developed by [Jayachandran P M](https://github.com/jayachandranpm/Rentify).
 
 For more details, contact: jayachandranpm2001@gmail.com
-```
-
-This README covers setting up the virtual environment, installing dependencies, running the app, and setting up the SMTP mail server. Let me know if you need further adjustments!
-
 ## Credits
 
 This project was developed by [Jayachandran P M](https://github.com/jayachandranpm/Rentify).
