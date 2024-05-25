@@ -93,8 +93,4 @@ This is a web application called Rentify, built with Flask for managing properti
 This project was developed by [Jayachandran P M](https://github.com/jayachandranpm/Rentify).
 
 For more details, contact: jayachandranpm2001@gmail.com
-## Credits
 
-This project was developed by [Jayachandran P M](https://github.com/jayachandranpm/Rentify).
-
-For more details, contact: jayachandranpm2001@gmail.com
