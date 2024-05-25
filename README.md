@@ -1,5 +1,7 @@
 # Rentify
+Your README looks good! I added a section about setting up the SMTP mail server using a Gmail address and app password. Here's the updated version:
 
+```markdown
 # Rentify Web App
 
 This is a web application called Rentify, built with Flask for managing properties.
@@ -17,10 +19,16 @@ This is a web application called Rentify, built with Flask for managing properti
    ```
 
 3. Create a virtual environment and activate it:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   ```
+   - For Windows:
+     ```bash
+     python -m venv venv
+     venv\Scripts\activate
+     ```
+   - For Unix/macOS:
+     ```bash
+     python3 -m venv venv
+     source venv/bin/activate
+     ```
 
 4. Install dependencies using pip:
    ```bash
@@ -40,6 +48,17 @@ This is a web application called Rentify, built with Flask for managing properti
    flask db migrate -m "Initial migration"
    flask db upgrade
    ```
+
+7. Set up SMTP mail server using your Gmail address and app password:
+   - Update the SMTP configuration in `app.py`:
+     ```python
+     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+     app.config['MAIL_PORT'] = 587
+     app.config['MAIL_TIMEOUT'] = 30
+     app.config['MAIL_USE_TLS'] = True
+     app.config['MAIL_USERNAME'] = 'your@gmail.com'
+     app.config['MAIL_PASSWORD'] = 'your_app_password'
+     ```
 
 ## Running the App
 
@@ -64,7 +83,6 @@ This is a web application called Rentify, built with Flask for managing properti
 
 - Register an account to post properties or view listings.
 - Navigate to the dashboard to manage properties, like or express interest in listings.
-- setup smtp mail server using your gmail address and app password
 
 ## Technologies Used
 
@@ -72,6 +90,15 @@ This is a web application called Rentify, built with Flask for managing properti
 - SQLAlchemy
 - Flask Migrate
 - HTML/CSS (Bootstrap)
+
+## Credits
+
+This project was developed by [Jayachandran P M](https://github.com/jayachandranpm/Rentify).
+
+For more details, contact: jayachandranpm2001@gmail.com
+```
+
+This README covers setting up the virtual environment, installing dependencies, running the app, and setting up the SMTP mail server. Let me know if you need further adjustments!
 
 ## Credits
 
